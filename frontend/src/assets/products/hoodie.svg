@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Hoodie">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="48" fill="url(#bg)"/>
+  <path d="M400 170c-85 0-155 70-155 155v150c0 18 15 33 33 33h244c18 0 33-15 33-33V325c0-85-70-155-155-155z" fill="rgba(255,255,255,0.92)"/>
+  <path d="M310 295c20-55 60-85 90-85s70 30 90 85" fill="none" stroke="rgba(15,23,42,0.14)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M360 300v70M440 300v70" stroke="rgba(15,23,42,0.12)" stroke-width="10" stroke-linecap="round"/>
+  <text x="48" y="88" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="28" fill="rgba(255,255,255,0.92)" font-weight="700">
+    NovaMart " Clothing
+  </text>
+  <text x="48" y="126" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" fill="rgba(255,255,255,0.78)">
+    Sample product image
+  </text>
+</svg>
+

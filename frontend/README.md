@@ -1,0 +1,187 @@
+# 🛍️ NovaMart — Modern E-Commerce Storefront
+
+A full-stack e-commerce app built with **React + Vite**, **Tailwind CSS v4**, **Firebase** (Auth + Firestore + Hosting), and **Stripe** (test mode checkout).
+
+---
+
+## 🗂️ Project Structure
+
+```
+src/
+├── components/
+│   ├── common/         # Button, Input, Badge, Skeleton, ProtectedRoute
+│   ├── layout/         # Navbar, Footer
+│   ├── product/        # ProductCard, CategoryFilter
+│   ├── cart/           # CartItem
+│   └── orders/         # OrderCard
+├── pages/              # HomePage, LoginPage, SignupPage, CartPage,
+│                       # OrdersPage, ProfilePage, NotFoundPage
+├── context/            # AuthContext, CartContext, ThemeContext
+├── services/           # authService, productService, cartService,
+│                       # orderService, stripeService
+├── hooks/              # useProducts, useOrders
+├── utils/              # helpers (formatCurrency, formatDate, cn…)
+├── firebase/           # config.js (initializeApp, auth, db)
+└── assets/
+functions/              # Firebase Cloud Function for Stripe
+```
+
+---
+
+## 🚀 Day 1 Setup
+
+### 1. Install dependencies
+
+```bash
+cd ecommerce-store
+npm install
+```
+
+### 2. Create a Firebase project
+
+1. Go to [console.firebase.google.com](https://console.firebase.google.com)
+2. Create a new project
+3. Enable **Authentication → Email/Password**
+4. Enable **Firestore Database** (start in test mode, then apply `firestore.rules`)
+5. Register a **Web app** and copy the config values
+
+### 3. Configure environment variables
+
+```bash
+cp .env.example .env.local
+# Fill in your Firebase + Stripe keys
+```
+
+### 4. Apply Firestore security rules
+
+```bash
+npm install -g firebase-tools
+firebase login
+firebase deploy --only firestore:rules,firestore:indexes
+```
+
+### 5. Seed the product catalog
+
+Open your browser console on any page of the running app and run:
+
+```js
+import('/src/services/productService.js').then(m => m.seedProducts())
+```
+
+Or paste this in the browser console after the app loads:
+
+```js
+// Only works in dev mode (Vite exposes modules)
+const { seedProducts } = await import('/src/services/productService.js')
+await seedProducts()
+```
+
+### 6. Run development server
+
+```bash
+npm run dev
+# → http://localhost:5173
+```
+
+---
+
+## 💳 Stripe Integration
+
+### Demo mode (no backend needed)
+The app runs in demo/mock mode by default — checkout completes instantly and saves an order to Firestore without a real payment. Perfect for development.
+
+### Real Stripe payments (optional)
+To enable real Stripe checkout:
+
+1. Get your keys from [dashboard.stripe.com](https://dashboard.stripe.com)
+2. Add `VITE_STRIPE_PUBLISHABLE_KEY` to `.env.local`
+3. Deploy the Cloud Function:
+
+```bash
+cd functions
+npm install
+firebase functions:config:set stripe.secret="sk_test_YOUR_SECRET_KEY"
+cd ..
+firebase deploy --only functions
+```
+
+4. In `src/services/stripeService.js`, uncomment the real `fetch()` block and update the URL to your Cloud Function endpoint.
+
+### Test card numbers
+| Card              | Number              | Use           |
+|-------------------|---------------------|---------------|
+| Visa (success)    | `4242 4242 4242 4242`| Any future date + any CVC |
+| Declined          | `4000 0000 0000 0002`| Always declines |
+| 3D Secure         | `4000 0025 0000 3155`| Requires auth  |
+
+---
+
+## 🔥 Firebase Hosting Deployment
+
+```bash
+# Build the production bundle
+npm run build
+
+# Deploy to Firebase Hosting
+firebase deploy --only hosting
+
+# Or deploy everything at once
+npm run deploy
+```
+
+Your app will be live at `https://YOUR_PROJECT_ID.web.app`
+
+---
+
+## 🌟 Features
+
+| Feature | Status |
+|---|---|
+| Email/password auth (signup + login) | ✅ |
+| Persistent auth state | ✅ |
+| Protected routes | ✅ |
+| Product catalog from Firestore | ✅ |
+| Category filtering | ✅ |
+| Live product search | ✅ |
+| Add / remove / update cart items | ✅ |
+| Cart persisted in Firestore per user | ✅ |
+| Stripe checkout (demo + real mode) | ✅ |
+| Orders saved to Firestore | ✅ |
+| Orders history page | ✅ |
+| Profile page with stats | ✅ |
+| Dark mode (Tailwind + localStorage) | ✅ |
+| Toast notifications | ✅ |
+| Skeleton loaders | ✅ |
+| Mobile-responsive navbar + hamburger | ✅ |
+| Free shipping progress bar | ✅ |
+| Firestore security rules | ✅ |
+| Firebase Cloud Function for Stripe | ✅ |
+
+---
+
+## 🔐 Security Notes
+
+- **Never commit `.env.local`** — it's in `.gitignore`
+- The Stripe **secret key** must only ever live in the Cloud Function (server-side)
+- The **publishable key** is safe to expose in the frontend
+- Firestore rules enforce that users can only read/write their own data
+- Orders are immutable once created (no update/delete allowed)
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React 18 + Vite 5 |
+| Styling | Tailwind CSS v4 |
+| Routing | React Router DOM v6 |
+| State | Context API (Auth, Cart, Theme) |
+| Database | Firebase Firestore |
+| Auth | Firebase Authentication |
+| Hosting | Firebase Hosting |
+| Payments | Stripe Checkout |
+| Backend | Firebase Cloud Functions (Node 18) |
+| Icons | Lucide React |
+| Toasts | React Hot Toast |
+

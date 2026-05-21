@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Mechanical keyboard">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="1" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="48" fill="url(#bg)"/>
+  <rect x="120" y="220" width="560" height="190" rx="26" fill="rgba(255,255,255,0.92)"/>
+  <g fill="rgba(15,23,42,0.14)">
+    <rect x="150" y="250" width="60" height="40" rx="10"/>
+    <rect x="220" y="250" width="60" height="40" rx="10"/>
+    <rect x="290" y="250" width="60" height="40" rx="10"/>
+    <rect x="360" y="250" width="60" height="40" rx="10"/>
+    <rect x="430" y="250" width="60" height="40" rx="10"/>
+    <rect x="500" y="250" width="60" height="40" rx="10"/>
+    <rect x="570" y="250" width="80" height="40" rx="10"/>
+    <rect x="150" y="300" width="90" height="40" rx="10"/>
+    <rect x="250" y="300" width="60" height="40" rx="10"/>
+    <rect x="320" y="300" width="60" height="40" rx="10"/>
+    <rect x="390" y="300" width="60" height="40" rx="10"/>
+    <rect x="460" y="300" width="60" height="40" rx="10"/>
+    <rect x="530" y="300" width="120" height="40" rx="10"/>
+    <rect x="150" y="350" width="140" height="40" rx="10"/>
+    <rect x="300" y="350" width="220" height="40" rx="10"/>
+    <rect x="530" y="350" width="120" height="40" rx="10"/>
+  </g>
+  <text x="48" y="88" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="28" fill="rgba(255,255,255,0.92)" font-weight="700">
+    NovaMart " Electronics
+  </text>
+  <text x="48" y="126" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" fill="rgba(255,255,255,0.78)">
+    Sample product image
+  </text>
+</svg>
+
